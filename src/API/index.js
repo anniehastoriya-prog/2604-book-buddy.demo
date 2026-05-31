@@ -1,4 +1,4 @@
-const API = import.meta.env.VITE_API;
+const API = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
 
 /** Fetches the array of all books in the catalog. */
 export async function getBooks() {

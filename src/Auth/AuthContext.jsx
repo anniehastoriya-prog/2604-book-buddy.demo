@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { apiFetch } from "../api";
+import * as api from "../api";
 
 const AuthContext = createContext();
 
@@ -13,7 +13,8 @@ export function AuthProvider({ children }) {
       setUser(null);
       return;
     }
-    apiFetch("/users/me", { token })
+    api
+      .getMe(token)
       .then(setUser)
       .catch(() => {
         // Token is missing/expired — clean it up.
@@ -22,22 +23,16 @@ export function AuthProvider({ children }) {
       });
   }, [token]);
 
-  async function register(fields) {
-    const data = await apiFetch("/users/register", {
-      method: "POST",
-      body: fields,
-    });
-    localStorage.setItem("token", data.token);
-    setToken(data.token);
+  async function register(credentials) {
+    const result = await api.register(credentials);
+    localStorage.setItem("token", result.token);
+    setToken(result.token);
   }
 
   async function login(credentials) {
-    const data = await apiFetch("/users/login", {
-      method: "POST",
-      body: credentials,
-    });
-    localStorage.setItem("token", data.token);
-    setToken(data.token);
+    const result = await api.login(credentials);
+    localStorage.setItem("token", result.token);
+    setToken(result.token);
   }
 
   function logout() {
