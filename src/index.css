@@ -1,0 +1,256 @@
+/* ============================================================
+   Book Buddy — index.css
+   Tailored to your Navbar.jsx and BookList.jsx markup.
+   Drop this into src/index.css. Vite hot-reloads CSS, no restart.
+   ============================================================ */
+
+:root {
+  --paper: #f6f3ec; /* page background */
+  --card: #ffffff; /* cards / inputs */
+  --ink: #20211f; /* main text */
+  --muted: #6b6f6a; /* secondary text */
+  --accent: #1f6f63; /* deep teal — links, buttons */
+  --accent-dark: #164f47; /* hover state */
+  --line: #e2ddd2; /* borders / dividers */
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(32, 33, 31, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  line-height: 1.6;
+}
+
+/* Center the app and keep line lengths readable */
+#root {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.25rem 4rem;
+}
+
+/* ---------- Headings ---------- */
+h1,
+h2,
+h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.4rem;
+}
+
+/* ---------- Links ---------- */
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-dark);
+  text-decoration: underline;
+}
+
+/* ---------- Header + Navbar ----------
+   Your <header> holds the "Book Buddy" brand <p> and the <nav>.
+   Lay them out as a top bar: brand left, links right. */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding: 1rem 0;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+/* The "Book Buddy" brand */
+header > p {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+nav a {
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer; /* logout <a> has no href, so force the hand cursor */
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+
+nav a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* NavLink sets aria-current="page" on the active route — highlight it */
+nav a[aria-current="page"] {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- Forms (Login / Register / Account) ---------- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 360px;
+  margin-top: 1rem;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--ink);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(31, 111, 99, 0.15);
+}
+
+/* ---------- Buttons ---------- */
+button {
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.6rem 1.1rem;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fff;
+  transition: background 0.15s ease;
+  align-self: flex-start;
+}
+
+button:hover {
+  background: var(--accent-dark);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- Generic lists (e.g. account reservations) ---------- */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+li {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Book grid ----------
+   `ul:has(img)` targets ONLY the list that contains cover images
+   (your BookList), so it becomes a grid of cards with no JSX change.
+   Other lists keep the stacked layout above. */
+ul:has(img) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 1.25rem;
+}
+
+ul:has(img) li {
+  padding: 0;
+  overflow: hidden; /* clip the cover to the card's rounded corners */
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+ul:has(img) li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(32, 33, 31, 0.12);
+}
+
+ul:has(img) li a {
+  display: block;
+  color: var(--ink);
+}
+
+ul:has(img) li a:hover {
+  text-decoration: none;
+}
+
+ul:has(img) img {
+  display: block;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  background: var(--line); /* soft placeholder if a cover fails to load */
+}
+
+ul:has(img) li p {
+  margin: 0;
+  padding: 0.7rem 0.85rem 0.95rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+/* ---------- Small helpers ---------- */
+p {
+  color: var(--ink);
+  margin: 0.5em 0;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
