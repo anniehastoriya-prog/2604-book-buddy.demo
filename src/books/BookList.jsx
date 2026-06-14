@@ -1,5 +1,8 @@
 import { Link } from "react-router";
-
+// Takes a list of book that th euser is able to click on, on the page.
+//Receives a books array as prop and loops over it.
+// .map Will walk through every book in the array and produces one BookListItem.
+// key={book.id}- its a unique key on each item in the list.
 export default function BookList({ books }) {
   return (
     <ul>
@@ -9,7 +12,7 @@ export default function BookList({ books }) {
     </ul>
   );
 }
-
+// Renders a single book.
 function BookListItem({ book }) {
   return (
     <li>

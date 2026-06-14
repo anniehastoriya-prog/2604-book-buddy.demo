@@ -1,9 +1,3 @@
-/* ============================================================
-   Book Buddy — index.css
-   Tailored to your Navbar.jsx and BookList.jsx markup.
-   Drop this into src/index.css. Vite hot-reloads CSS, no restart.
-   ============================================================ */
-
 :root {
   --paper: #f6f3ec; /* page background */
   --card: #ffffff; /* cards / inputs */
@@ -65,9 +59,8 @@ a:hover {
   text-decoration: underline;
 }
 
-/* ---------- Header + Navbar ----------
-   Your <header> holds the "Book Buddy" brand <p> and the <nav>.
-   Lay them out as a top bar: brand left, links right. */
+/* ---------- Header + Navbar ---------- */
+
 header {
   display: flex;
   flex-wrap: wrap;
@@ -97,7 +90,7 @@ nav {
 nav a {
   font-weight: 600;
   color: var(--ink);
-  cursor: pointer; /* logout <a> has no href, so force the hand cursor */
+  cursor: pointer;
   padding-bottom: 2px;
   border-bottom: 2px solid transparent;
 }
@@ -190,10 +183,8 @@ li {
   box-shadow: var(--shadow);
 }
 
-/* ---------- Book grid ----------
-   `ul:has(img)` targets ONLY the list that contains cover images
-   (your BookList), so it becomes a grid of cards with no JSX change.
-   Other lists keep the stacked layout above. */
+/* ---------- Book grid ----------*/
+
 ul:has(img) {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
@@ -202,7 +193,7 @@ ul:has(img) {
 
 ul:has(img) li {
   padding: 0;
-  overflow: hidden; /* clip the cover to the card's rounded corners */
+  overflow: hidden;
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease;
@@ -227,7 +218,7 @@ ul:has(img) img {
   width: 100%;
   height: 240px;
   object-fit: cover;
-  background: var(--line); /* soft placeholder if a cover fails to load */
+  background: var(--line);
 }
 
 ul:has(img) li p {

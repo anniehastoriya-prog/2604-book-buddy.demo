@@ -7,11 +7,6 @@ import BookDetails from "./books/BookDetails";
 import AccountPage from "./account/AccountPage";
 import Error404 from "./Error404.jsx";
 
-/**
- * Book Buddy is a platform where users can browse a catalog of books.
- * Anyone can browse the site and make an account, and users with an
- * account will be able to reserve and return books.
- */
 export default function App() {
   return (
     <Routes>
